@@ -64,7 +64,7 @@ function Login() {
         >
             <form onSubmit={handleSubmit} className={styles.form}>
                 <div>
-                    <label className={styles.label}>USERNAME</label>
+                    <label className={styles.label}>EMAIL</label>
                     <input
                         type="text"
                         value={username}
