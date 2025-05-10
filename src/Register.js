@@ -46,7 +46,7 @@ function Register() {
     return (
         <div
             className={styles.container}
-            style={{ backgroundImage: `url(/images/background.png)`, backgroundSize: 'cover' }}
+            style={{ backgroundImage: 'url(/images/background_3.png)', backgroundSize: 'cover' }}
         >
             <form onSubmit={handleSubmit} className={styles.form}>
                 <h2 className={styles.label}>Create Account</h2>
