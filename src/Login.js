@@ -14,7 +14,7 @@ function Login() {
     useEffect(() => {
         console.log('Login Component mounted');
         if (!localStorage.getItem('token')) {
-            console.log('Clearing token');
+            console.log('No token found in localStorage. Clearing token.');
             localStorage.removeItem('token');
             setToken('');
         }
@@ -23,16 +23,18 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            console.log('Sending login request...');
+            console.log('Sending login request for user:', username);
             const loginResponse = await axios.post('https://edubot-app-b910de05b052.herokuapp.com/api/auth/login', { username, password });
 
             const newToken = loginResponse.data['jwt-token'];
             if (newToken) {
+                console.log('Received JWT token:', newToken);
                 localStorage.setItem('token', newToken);
                 setToken(newToken);
-                console.log('Login successful! Fetching user details...');
+                console.log('Login successful! Token stored.');
+                console.log('Fetching user details...');
 
-                const userResponse = await axios.get(`https://edubot-app-b910de05b052.herokuapp.com/edubot/user/details/${username}`, {
+                const userResponse = await axios.get(`https://edubot-app-b910de05b052.herokuapp.com/edubot/user/details/${encodeURIComponent(username)}`, {
                     headers: {
                         Authorization: `Bearer ${newToken}`
                     }
@@ -40,10 +42,15 @@ function Login() {
 
                 if (userResponse.data) {
                     const { id, name, highscore } = userResponse.data;
+                    console.log('User details:', { id, name, highscore });
                     setUser({ id, name, highscore });
                     localStorage.setItem('user', JSON.stringify({ id, name, highscore }));
                     navigate('/select-continent');
+                } else {
+                    console.log('No user details returned.');
                 }
+            } else {
+                console.warn('No token received!');
             }
         } catch (error) {
             console.error('Login failed:', error.response ? error.response.data : error.message);
