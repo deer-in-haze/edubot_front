@@ -1,3 +1,4 @@
+//Register.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -33,8 +34,11 @@ function Register() {
 
                 if (userResponse.data) {
                     const { id, name, highscore } = userResponse.data;
-                    setUser({ id, name, highscore });
+                    const userObject = { id, name, highscore };
+                    setUser(userObject);
+                    localStorage.setItem('user', JSON.stringify(userObject)); // ✅ this ensures Quiz.js sees it
                 }
+
 
                 navigate('/select-continent');
             }
@@ -46,7 +50,7 @@ function Register() {
     return (
         <div
             className={styles.container}
-            style={{ backgroundImage: 'url(/images/background_3.png)', backgroundSize: 'cover' }}
+            style={{ backgroundImage: `url(/images/background_3.png)`, backgroundSize: 'cover' }}
         >
             <form onSubmit={handleSubmit} className={styles.form}>
                 <h2 className={styles.label}>Create Account</h2>
