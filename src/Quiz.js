@@ -25,7 +25,7 @@ function Quiz() {
 
         const fetchQuestions = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/eduBot/questions/${selectedContinent}/${selectedDifficulty}`, {
+                const response = await axios.get(`https://edubot-app-b910de05b052.herokuapp.com/eduBot/questions/${selectedContinent}/${selectedDifficulty}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -96,14 +96,14 @@ function Quiz() {
 
             console.log('Submitting quiz data:', quizData);
 
-            await axios.post('http://localhost:8080/eduBot/quiz', quizData, {
+            await axios.post('https://edubot-app-b910de05b052.herokuapp.com/eduBot/quiz', quizData, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
 
             if (score > user.highscore) {
-                await axios.patch(`http://localhost:8080/eduBot/user/highscore/${user.id}/${score}`, null, {
+                await axios.patch(`https://edubot-app-b910de05b052.herokuapp.com/eduBot/user/highscore/${user.id}/${score}`, null, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

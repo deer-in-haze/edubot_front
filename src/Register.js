@@ -14,7 +14,7 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/api/auth/register', {
+            const response = await axios.post('https://edubot-app-b910de05b052.herokuapp.com/edubot/api/auth/register', {
                 name,
                 email,
                 password
@@ -25,7 +25,7 @@ function Register() {
                 localStorage.setItem('token', token);
                 setToken(token);
 
-                const userResponse = await axios.get(`http://localhost:8080/eduBot/user/details/${email}`, {
+                const userResponse = await axios.get(`https://edubot-app-b910de05b052.herokuapp.com/eduBot/user/details/${email}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

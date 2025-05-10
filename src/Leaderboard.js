@@ -9,7 +9,7 @@ function Leaderboard() {
         const fetchLeaderboard = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:8080/eduBot/leaderboard', {
+                const response = await axios.get('https://edubot-app-b910de05b052.herokuapp.com/eduBot/leaderboard', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
