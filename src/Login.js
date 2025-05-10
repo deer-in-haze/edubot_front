@@ -24,7 +24,7 @@ function Login() {
         e.preventDefault();
         try {
             console.log('Sending login request...');
-            const loginResponse = await axios.post('https://edubot-app-b910de05b052.herokuapp.com/edubot/api/auth/login', { username, password });
+            const loginResponse = await axios.post('https://edubot-app-b910de05b052.herokuapp.com/api/auth/login', { username, password });
 
             const newToken = loginResponse.data['jwt-token'];
             if (newToken) {
@@ -32,7 +32,7 @@ function Login() {
                 setToken(newToken);
                 console.log('Login successful! Fetching user details...');
 
-                const userResponse = await axios.get(`https://edubot-app-b910de05b052.herokuapp.com/eduBot/user/details/${username}`, {
+                const userResponse = await axios.get(`https://edubot-app-b910de05b052.herokuapp.com/edubot/user/details/${username}`, {
                     headers: {
                         Authorization: `Bearer ${newToken}`
                     }
