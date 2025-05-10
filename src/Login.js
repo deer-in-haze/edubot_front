@@ -12,8 +12,9 @@ function Login() {
     const { setToken, setUser } = useUserContext();
 
     useEffect(() => {
+        console.log('Login Component mounted');
         if (!localStorage.getItem('token')) {
-            console.log('Component mounted, clearing token');
+            console.log('Clearing token');
             localStorage.removeItem('token');
             setToken('');
         }
@@ -31,7 +32,6 @@ function Login() {
                 setToken(newToken);
                 console.log('Login successful! Fetching user details...');
 
-                // Fetch user details
                 const userResponse = await axios.get(`http://localhost:8080/eduBot/user/details/${username}`, {
                     headers: {
                         Authorization: `Bearer ${newToken}`
@@ -41,10 +41,9 @@ function Login() {
                 if (userResponse.data) {
                     const { id, name, highscore } = userResponse.data;
                     setUser({ id, name, highscore });
-                    localStorage.setItem("user", JSON.stringify({ id, name, highscore }));
+                    localStorage.setItem('user', JSON.stringify({ id, name, highscore }));
+                    navigate('/select-continent');
                 }
-
-                navigate('/select-continent');
             }
         } catch (error) {
             console.error('Login failed:', error.response ? error.response.data : error.message);

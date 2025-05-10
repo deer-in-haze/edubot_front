@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from './UserContext';
 import styles from './ContinentSelector.module.css';  // Import the CSS module
 
 function ContinentSelector() {
-    const { setSelectedContinent, token, selectedContinent, selectedDifficulty } = useUserContext();
+    const { setSelectedContinent, selectedContinent, selectedDifficulty, token, user } = useUserContext();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        console.log('useEffect triggered');
+
+        if (user?.id) {
+            console.log('User ID is valid:', user.id);
+        } else {
+            console.log('User ID is null - redirecting to login');
+            navigate('/login');
+        }
+    }, [user, navigate]);
 
     const continents = [
         { name: 'AFRICA', image: './images/africa.png' },
@@ -30,7 +41,7 @@ function ContinentSelector() {
     return (
         <>
             <div className={styles.header}>
-                <h1 className={styles.title}>Select a Continent to Play</h1>
+                <h1 className={styles.title}>Hello, {user.name}! Select a continent to play</h1>
             </div>
 
             <div className={styles.container}>
