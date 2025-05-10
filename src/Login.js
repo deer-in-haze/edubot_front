@@ -34,7 +34,7 @@ function Login() {
                 console.log('Login successful! Token stored.');
                 console.log('Fetching user details...');
 
-                const userResponse = await axios.get(`https://edubot-app-b910de05b052.herokuapp.com/edubot/user/details/${encodeURIComponent(username)}`, {
+                const userResponse = await axios.get(`https://edubot-app-b910de05b052.herokuapp.com/edubot/user/details/${username}`, {
                     headers: {
                         Authorization: `Bearer ${newToken}`
                     }
