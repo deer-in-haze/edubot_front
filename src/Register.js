@@ -25,7 +25,7 @@ function Register() {
                 localStorage.setItem('token', token);
                 setToken(token);
 
-                const userResponse = await axios.get(`https://edubot-app-b910de05b052.herokuapp.com/edubot/user/details/${email}`, {
+                const userResponse = await axios.get(`https://edubot-app-b910de05b052.herokuapp.com/eduBot/user/details/${email}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
