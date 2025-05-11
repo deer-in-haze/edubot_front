@@ -1,4 +1,3 @@
-//Register.js
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +8,7 @@ function Register() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');  // State to store error messages
     const navigate = useNavigate();
     const { setToken, setUser } = useUserContext();
 
@@ -43,11 +43,11 @@ function Register() {
                     localStorage.setItem('user', JSON.stringify(userObject)); // ✅ this ensures Quiz.js sees it
                 }
 
-
                 navigate('/select-continent');
             }
         } catch (error) {
             console.error('Registration failed:', error.response?.data || error.message);
+            setErrorMsg(error.response?.data || 'An unexpected error occurred');
         }
     };
 
@@ -58,6 +58,8 @@ function Register() {
         >
             <form onSubmit={handleSubmit} className={styles.form}>
                 <h2 className={styles.label}>Create Account</h2>
+
+                {errorMsg && <div className={styles.error}>{errorMsg}</div>}
 
                 <label className={styles.label}>Name</label>
                 <input
