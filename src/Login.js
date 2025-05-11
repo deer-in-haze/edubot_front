@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');  // State for error message
     const navigate = useNavigate();
     const { setToken, setUser } = useUserContext();
 
@@ -55,6 +56,7 @@ function Login() {
             }
         } catch (error) {
             console.error('Login failed:', error.response ? error.response.data : error.message);
+            setErrorMsg('Wrong email/password'); // Set the error message
         }
     };
 
@@ -84,6 +86,7 @@ function Login() {
                         className={styles.input}
                     />
                 </div>
+                {errorMsg && <div className={styles.error}>{errorMsg}</div>} {/* Display error message */}
                 <button type="submit" className={styles.button}>LOGIN</button>
                 <p className={styles.linkText}>
                     Don’t have an account? <Link to="/register">Register here</Link>
