@@ -47,7 +47,7 @@ function Register() {
             }
         } catch (error) {
             console.error('Registration failed:', error.response?.data || error.message);
-            setErrorMsg(error.response?.data || 'Registration failed. Email is use.');
+            setErrorMsg(error.response?.data || 'Registration failed. Please use a different email.');
         }
     };
 
