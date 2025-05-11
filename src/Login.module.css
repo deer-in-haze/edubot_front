@@ -1,9 +1,8 @@
 .error {
     color: #d9534f;
-    border: 1px solid #f5c6cb;
-    padding: 5px;
+    padding: 2px;
     margin-bottom: 15px;
-    font-size: 10px;
+    font-size: 14px;
     border-radius: 6px;
     text-align: center;
     font-family: 'Poppins', sans-serif;
