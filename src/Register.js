@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from './UserContext';
-import styles from './Login.module.css'; // ✅ Use the same styles
+import styles from './Login.module.css'; // Use the same styles
 
 function Register() {
     const [name, setName] = useState('');
@@ -40,9 +40,8 @@ function Register() {
                     const { id, name, highscore } = userResponse.data;
                     const userObject = { id, name, highscore };
                     setUser(userObject);
-                    localStorage.setItem('user', JSON.stringify(userObject)); // ✅ this ensures Quiz.js sees it
+                    localStorage.setItem('user', JSON.stringify(userObject)); // Ensure Quiz.js sees it
                 }
-
                 navigate('/select-continent');
             }
         } catch (error) {
@@ -58,8 +57,6 @@ function Register() {
         >
             <form onSubmit={handleSubmit} className={styles.form}>
                 <h2 className={styles.label}>Create Account</h2>
-
-                {errorMsg && <div className={styles.error}>{errorMsg}</div>}
 
                 <label className={styles.label}>Name</label>
                 <input
@@ -78,6 +75,7 @@ function Register() {
                     required
                     className={styles.input}
                 />
+                {errorMsg && <div className={styles.error}>{errorMsg}</div>}  {/* Error message placed here */}
 
                 <label className={styles.label}>Password</label>
                 <input
