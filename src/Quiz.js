@@ -17,6 +17,7 @@ function Quiz() {
     const [questionStartTime, setQuestionStartTime] = useState(new Date());
 
     useEffect(() => {
+        document.title = "Quiz - EduBot";
         if (!selectedContinent || !selectedDifficulty) {
             console.error('Continent or Difficulty not selected!');
             navigate('/select-continent');
@@ -83,6 +84,8 @@ function Quiz() {
         const minutes = Math.floor(durationMs / 60000);
         const seconds = Math.floor((durationMs % 60000) / 1000);
         const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+
 
         try {
             const quizData = {

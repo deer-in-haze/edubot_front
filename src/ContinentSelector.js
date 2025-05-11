@@ -8,6 +8,7 @@ function ContinentSelector() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        document.title = "Select continent - EduBot";
         console.log('useEffect triggered');
 
         if (user?.id) {

@@ -6,6 +6,7 @@ function Leaderboard() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
+        document.title = "Leaderboard - EduBot";
         const fetchLeaderboard = async () => {
             try {
                 const token = localStorage.getItem('token');

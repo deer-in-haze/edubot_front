@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from './UserContext';
 import styles from './SelectDifficulty.module.css';
@@ -18,6 +18,10 @@ function SelectDifficulty() {
         console.log('Selected difficulty:', difficulty);
         navigate('/quiz'); // Change this to your actual quiz route
     };
+
+    useEffect(() => {
+        document.title = "Select difficulty - EduBot";
+    }, []);
 
     return (
         <>

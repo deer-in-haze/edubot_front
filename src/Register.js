@@ -1,5 +1,5 @@
 //Register.js
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from './UserContext';
@@ -11,6 +11,10 @@ function Register() {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const { setToken, setUser } = useUserContext();
+
+    useEffect(() => {
+        document.title = "Register - EduBot";
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

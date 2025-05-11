@@ -12,6 +12,7 @@ function Login() {
     const { setToken, setUser } = useUserContext();
 
     useEffect(() => {
+        document.title = "Login - EduBot";
         console.log('Login Component mounted');
         if (!localStorage.getItem('token')) {
             console.log('No token found in localStorage. Clearing token.');
