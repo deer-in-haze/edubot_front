@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from './UserContext';
-import styles from './Login.module.css'; // Use the same styles
+import styles from './Register.module.css'; // Use the same styles
 
 function Register() {
     const [name, setName] = useState('');
